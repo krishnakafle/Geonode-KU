@@ -1,0 +1,269 @@
+{% extends "geonode_base.html" %}
+{% load markdownify %}
+{% load i18n %}
+{% load static from staticfiles %}
+{% load base_tags %}
+
+{% block title %} {% trans "Welcome!" %} - {{ block.super }} {% endblock %}
+
+{% block body_class %}home{% endblock %}
+
+{% block header %}
+  {% include "include_components/nav_home.html" %}
+{% endblock header %}
+
+{% block footer %}
+  {% include "include_components/footer.html" %}
+{% endblock footer %}
+
+{% block middle %}
+  {{ block.super }}
+
+  {% block hero %}
+  {% if block.super %}
+  {{ block.super }}
+  {% else %}
+
+  {% endif %}
+  {% endblock hero %}
+
+  {% block mainbody %}
+
+  {% block bigsearch %}
+  {% if block.super %}
+  {{ block.super }}
+  {% else %}
+  <div class="big-search">
+
+  </div>
+  {% endif %}
+  {% endblock bigsearch %}
+
+	  {% block showcase %}
+
+    <div class="geo-info text-center main-vertical-spacing">
+        <h2>What we do</h2>
+        <div class="container clearfix">
+          {% with facet_type='home' %}
+           {% facets as facets %}
+            <div class="col-md-6 float-left clearfix objective-list">
+                <div class="objective-icon">
+                  <a href="{% url "layer_browse" %}">
+                    <svg width="50" height="50" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19.9996 5.99851C19.9994 5.82003 19.9514 5.64486 19.8607 5.49118C19.77 5.33749 19.6398 5.21089 19.4836 5.12451L10.4616 0.124505C10.3133 0.0428313 10.1468 0 9.97758 0C9.80832 0 9.64182 0.0428313 9.49358 0.124505L0.515577 5.08451C0.359611 5.17087 0.229569 5.29736 0.138919 5.45087C0.0482692 5.60439 0.000307446 5.77934 1.4732e-06 5.95762C-0.0003045 6.1359 0.0470562 6.31102 0.137179 6.46485C0.227301 6.61867 0.356909 6.74561 0.512577 6.83251L9.53458 11.8725C9.68311 11.956 9.85058 11.9999 10.0209 12.0001C10.1913 12.0002 10.3589 11.9567 10.5076 11.8735L19.4856 6.8735C19.6415 6.78678 19.7714 6.65991 19.8618 6.50605C19.9522 6.35219 19.9998 6.17695 19.9996 5.99851V5.99851ZM10.0226 9.85351L3.05958 5.96451L9.97658 2.14251L16.9406 6.0015L10.0226 9.85351V9.85351Z" fill="#ff3000"/>
+                        <path d="M18.5147 9.12549L9.99967 13.8555L1.48467 9.12549L0.513672 10.8735L9.51367 15.8735C9.66219 15.956 9.82928 15.9993 9.99917 15.9993C10.1691 15.9993 10.3361 15.956 10.4847 15.8735L19.4847 10.8735L18.5147 9.12549Z" fill="#ff3000"/>
+                        <path d="M18.5147 13.1255L9.99967 17.8555L1.48467 13.1255L0.513672 14.8735L9.51367 19.8735C9.66219 19.956 9.82928 19.9993 9.99917 19.9993C10.1691 19.9993 10.3361 19.956 10.4847 19.8735L19.4847 14.8735L18.5147 13.1255V13.1255Z" fill="#ff3000"/>
+                    </svg>
+                    </a>
+                </div>
+                <div class="objective-detail">
+                    <strong><a href="{% url "layer_browse" %}">{{ facets.layer|default:_("No") }} {% blocktrans count counter=facets.layer %}Layer{% plural %}Layers{% endblocktrans %}</a></strong>
+                    <p>{% trans "Click to search for geospatial data published by other users, organizations and public sources. Download data in standard formats." %}</p>
+                    {% if user.is_authenticated %}
+                    <a class="link-button" href="{% url "layer_upload" %}" role="button">{% trans "Add layers" %}
+                      <svg width="15" height="15" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.00002C0 4.86741 0.0526784 4.74024 0.146447 4.64647C0.240215 4.5527 0.367392 4.50002 0.5 4.50002H12.293L9.146 1.35402C9.05211 1.26013 8.99937 1.1328 8.99937 1.00002C8.99937 0.867245 9.05211 0.739908 9.146 0.646021C9.23989 0.552134 9.36722 0.49939 9.5 0.49939C9.63278 0.49939 9.76011 0.552134 9.854 0.646021L13.854 4.64602C13.9006 4.69247 13.9375 4.74764 13.9627 4.80839C13.9879 4.86913 14.0009 4.93425 14.0009 5.00002C14.0009 5.06579 13.9879 5.13091 13.9627 5.19165C13.9375 5.2524 13.9006 5.30758 13.854 5.35402L9.854 9.35402C9.76011 9.44791 9.63278 9.50065 9.5 9.50065C9.36722 9.50065 9.23989 9.44791 9.146 9.35402C9.05211 9.26013 8.99937 9.1328 8.99937 9.00002C8.99937 8.86725 9.05211 8.73991 9.146 8.64602L12.293 5.50002H0.5C0.367392 5.50002 0.240215 5.44734 0.146447 5.35357C0.0526784 5.25981 0 5.13263 0 5.00002V5.00002Z" fill="#333"/>
+                      </svg>
+                    </a>
+                    {% else %}
+                    <a class="link-button" href="{% url "layer_browse" %}" role="button">{% trans "Explore layers" %}
+                      <svg width="15" height="15" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.00002C0 4.86741 0.0526784 4.74024 0.146447 4.64647C0.240215 4.5527 0.367392 4.50002 0.5 4.50002H12.293L9.146 1.35402C9.05211 1.26013 8.99937 1.1328 8.99937 1.00002C8.99937 0.867245 9.05211 0.739908 9.146 0.646021C9.23989 0.552134 9.36722 0.49939 9.5 0.49939C9.63278 0.49939 9.76011 0.552134 9.854 0.646021L13.854 4.64602C13.9006 4.69247 13.9375 4.74764 13.9627 4.80839C13.9879 4.86913 14.0009 4.93425 14.0009 5.00002C14.0009 5.06579 13.9879 5.13091 13.9627 5.19165C13.9375 5.2524 13.9006 5.30758 13.854 5.35402L9.854 9.35402C9.76011 9.44791 9.63278 9.50065 9.5 9.50065C9.36722 9.50065 9.23989 9.44791 9.146 9.35402C9.05211 9.26013 8.99937 9.1328 8.99937 9.00002C8.99937 8.86725 9.05211 8.73991 9.146 8.64602L12.293 5.50002H0.5C0.367392 5.50002 0.240215 5.44734 0.146447 5.35357C0.0526784 5.25981 0 5.13263 0 5.00002V5.00002Z" fill="#333"/>
+                      </svg>
+                    </a>
+                    {% endif %}
+
+                </div>
+            </div>
+            <div class="col-md-6 float-left clearfix objective-list">
+                <div class="objective-icon">
+                  <a href="{% url "maps_browse" %}">
+                    <svg width="50" height="50" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 15L11 13V7.858C12.721 7.411 14 5.858 14 4C14 1.794 12.206 0 10 0C7.794 0 6 1.794 6 4C6 5.858 7.279 7.411 9 7.858V13L10 15ZM8 4C8 2.897 8.897 2 10 2C11.103 2 12 2.897 12 4C12 5.103 11.103 6 10 6C8.897 6 8 5.103 8 4Z" fill="#ff3000"/>
+                        <path d="M14.267 8.56301L13.734 10.491C16.325 11.207 18 12.584 18 14C18 15.892 14.715 18 10 18C5.285 18 2 15.892 2 14C2 12.584 3.675 11.207 6.267 10.49L5.734 8.56201C2.197 9.54001 0 11.623 0 14C0 17.364 4.393 20 10 20C15.607 20 20 17.364 20 14C20 11.623 17.803 9.54001 14.267 8.56301V8.56301Z" fill="#ff3000"/>
+                    </svg>
+                  </a>
+                </div>
+                <div class="objective-detail">
+                    <strong><a href="{% url "maps_browse" %}">{{ facets.map|default:_("No") }} {% blocktrans count counter=facets.map %}Map{% plural %}Maps{% endblocktrans %}</a></strong>
+                    <p>{% trans "Data is available for browsing, aggregating and styling to generate maps which can be saved, downloaded, shared publicly or restricted to specify users only." %}</p>
+                    {% if user.is_authenticated %}
+                    <a href="{% url "new_map" %}" class="link-button">
+                        {% trans "Create maps" %}
+                        <svg width="15" height="15" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.00002C0 4.86741 0.0526784 4.74024 0.146447 4.64647C0.240215 4.5527 0.367392 4.50002 0.5 4.50002H12.293L9.146 1.35402C9.05211 1.26013 8.99937 1.1328 8.99937 1.00002C8.99937 0.867245 9.05211 0.739908 9.146 0.646021C9.23989 0.552134 9.36722 0.49939 9.5 0.49939C9.63278 0.49939 9.76011 0.552134 9.854 0.646021L13.854 4.64602C13.9006 4.69247 13.9375 4.74764 13.9627 4.80839C13.9879 4.86913 14.0009 4.93425 14.0009 5.00002C14.0009 5.06579 13.9879 5.13091 13.9627 5.19165C13.9375 5.2524 13.9006 5.30758 13.854 5.35402L9.854 9.35402C9.76011 9.44791 9.63278 9.50065 9.5 9.50065C9.36722 9.50065 9.23989 9.44791 9.146 9.35402C9.05211 9.26013 8.99937 9.1328 8.99937 9.00002C8.99937 8.86725 9.05211 8.73991 9.146 8.64602L12.293 5.50002H0.5C0.367392 5.50002 0.240215 5.44734 0.146447 5.35357C0.0526784 5.25981 0 5.13263 0 5.00002V5.00002Z" fill="#333"/>
+                        </svg>
+                    </a>
+                    {% else %}
+                    <a href="{% url "maps_browse" %}" class="link-button">
+                        {% trans "Explore maps" %}
+                        <svg width="15" height="15" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.00002C0 4.86741 0.0526784 4.74024 0.146447 4.64647C0.240215 4.5527 0.367392 4.50002 0.5 4.50002H12.293L9.146 1.35402C9.05211 1.26013 8.99937 1.1328 8.99937 1.00002C8.99937 0.867245 9.05211 0.739908 9.146 0.646021C9.23989 0.552134 9.36722 0.49939 9.5 0.49939C9.63278 0.49939 9.76011 0.552134 9.854 0.646021L13.854 4.64602C13.9006 4.69247 13.9375 4.74764 13.9627 4.80839C13.9879 4.86913 14.0009 4.93425 14.0009 5.00002C14.0009 5.06579 13.9879 5.13091 13.9627 5.19165C13.9375 5.2524 13.9006 5.30758 13.854 5.35402L9.854 9.35402C9.76011 9.44791 9.63278 9.50065 9.5 9.50065C9.36722 9.50065 9.23989 9.44791 9.146 9.35402C9.05211 9.26013 8.99937 9.1328 8.99937 9.00002C8.99937 8.86725 9.05211 8.73991 9.146 8.64602L12.293 5.50002H0.5C0.367392 5.50002 0.240215 5.44734 0.146447 5.35357C0.0526784 5.25981 0 5.13263 0 5.00002V5.00002Z" fill="#333"/>
+                        </svg>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-6 float-left clearfix objective-list">
+                <div class="objective-icon">
+                  <a href="{% url "document_browse" %}">
+                    <svg width="50" height="50" viewBox="0 0 896 896" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M64 256V832H640V256H64ZM32 192H672C680.487 192 688.626 195.371 694.627 201.373C700.629 207.374 704 215.513 704 224V864C704 872.487 700.629 880.626 694.627 886.627C688.626 892.629 680.487 896 672 896H32C23.5131 896 15.3737 892.629 9.37258 886.627C3.37142 880.626 0 872.487 0 864V224C0 215.513 3.37142 207.374 9.37258 201.373C15.3737 195.371 23.5131 192 32 192V192ZM896 32V736C896 744.487 892.629 752.626 886.627 758.627C880.626 764.629 872.487 768 864 768H768V704H832V64H320V128H256V32C256 23.5131 259.371 15.3737 265.373 9.37258C271.374 3.37142 279.513 0 288 0H864C872.487 0 880.626 3.37142 886.627 9.37258C892.629 15.3737 896 23.5131 896 32ZM192 608H512V672H192V608ZM192 416H512V480H192V416Z" fill="#ff3000"/>
+                    </svg>
+                  </a>
+                </div>
+                <div class="objective-detail">
+                    <strong><a href="{% url "document_browse" %}">{{ facets.document|default:_("No") }} {% blocktrans count counter=facets.document %}Document{% plural %}Documents{% endblocktrans %}</strong>
+                    <p>{% trans "As for the layers and maps GeoNode allows to publish tabular and text data, manage theirs metadata and associated documents." %}</p>
+                    {% if user.is_authenticated %}
+                    <a href="{% url "document_browse" %}" class="link-button">
+                        {% trans "Explore Documents" %}
+                        <svg width="15" height="15" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.00002C0 4.86741 0.0526784 4.74024 0.146447 4.64647C0.240215 4.5527 0.367392 4.50002 0.5 4.50002H12.293L9.146 1.35402C9.05211 1.26013 8.99937 1.1328 8.99937 1.00002C8.99937 0.867245 9.05211 0.739908 9.146 0.646021C9.23989 0.552134 9.36722 0.49939 9.5 0.49939C9.63278 0.49939 9.76011 0.552134 9.854 0.646021L13.854 4.64602C13.9006 4.69247 13.9375 4.74764 13.9627 4.80839C13.9879 4.86913 14.0009 4.93425 14.0009 5.00002C14.0009 5.06579 13.9879 5.13091 13.9627 5.19165C13.9375 5.2524 13.9006 5.30758 13.854 5.35402L9.854 9.35402C9.76011 9.44791 9.63278 9.50065 9.5 9.50065C9.36722 9.50065 9.23989 9.44791 9.146 9.35402C9.05211 9.26013 8.99937 9.1328 8.99937 9.00002C8.99937 8.86725 9.05211 8.73991 9.146 8.64602L12.293 5.50002H0.5C0.367392 5.50002 0.240215 5.44734 0.146447 5.35357C0.0526784 5.25981 0 5.13263 0 5.00002V5.00002Z" fill="#333"/>
+                        </svg>
+                    </a>
+                    {% else %}
+                    <a href="{% url "document_browse" %}" class="link-button">
+                        {% trans "Explore Documents" %}
+                        <svg width="15" height="15" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.00002C0 4.86741 0.0526784 4.74024 0.146447 4.64647C0.240215 4.5527 0.367392 4.50002 0.5 4.50002H12.293L9.146 1.35402C9.05211 1.26013 8.99937 1.1328 8.99937 1.00002C8.99937 0.867245 9.05211 0.739908 9.146 0.646021C9.23989 0.552134 9.36722 0.49939 9.5 0.49939C9.63278 0.49939 9.76011 0.552134 9.854 0.646021L13.854 4.64602C13.9006 4.69247 13.9375 4.74764 13.9627 4.80839C13.9879 4.86913 14.0009 4.93425 14.0009 5.00002C14.0009 5.06579 13.9879 5.13091 13.9627 5.19165C13.9375 5.2524 13.9006 5.30758 13.854 5.35402L9.854 9.35402C9.76011 9.44791 9.63278 9.50065 9.5 9.50065C9.36722 9.50065 9.23989 9.44791 9.146 9.35402C9.05211 9.26013 8.99937 9.1328 8.99937 9.00002C8.99937 8.86725 9.05211 8.73991 9.146 8.64602L12.293 5.50002H0.5C0.367392 5.50002 0.240215 5.44734 0.146447 5.35357C0.0526784 5.25981 0 5.13263 0 5.00002V5.00002Z" fill="#333"/>
+                        </svg>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-6 float-left clearfix objective-list">
+                <div class="objective-icon">
+                  <a href="{% url "profile_browse" %}">
+                    <svg width="50" height="50" viewBox="0 0 250 182" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M245.806 103.393C244.11 104.667 241.976 105.215 239.876 104.917C237.775 104.618 235.879 103.497 234.605 101.801C229.782 95.3196 223.505 90.0609 216.279 86.4481C209.052 82.8352 201.079 80.9691 193 81C190.878 81 188.843 80.1571 187.343 78.6568C185.843 77.1565 185 75.1217 185 73C185 70.8782 185.843 68.8434 187.343 67.3431C188.843 65.8428 190.878 65 193 65C197.553 64.9988 202.012 63.7023 205.856 61.262C209.7 58.8217 212.771 55.3382 214.71 51.2183C216.648 47.0983 217.375 42.5119 216.805 37.9944C216.235 33.477 214.391 29.215 211.489 25.706C208.588 22.1969 204.748 19.5857 200.418 18.1772C196.088 16.7686 191.447 16.6209 187.036 17.7512C182.625 18.8814 178.627 21.2431 175.508 24.5605C172.389 27.8778 170.278 32.014 169.422 36.486C169.026 38.5704 167.818 40.4122 166.064 41.6062C164.31 42.8001 162.154 43.2484 160.07 42.8525C157.985 42.4565 156.143 41.2487 154.949 39.4948C153.755 37.7408 153.307 35.5844 153.703 33.5C154.887 27.2745 157.533 21.4193 161.423 16.4168C165.313 11.4143 170.336 7.40769 176.078 4.72697C181.82 2.04625 188.117 0.768167 194.45 0.998015C200.783 1.22786 206.97 2.95906 212.503 6.04899C218.036 9.13892 222.755 13.4992 226.272 18.7705C229.789 24.0418 232.004 30.0734 232.733 36.3683C233.462 42.6633 232.686 49.0414 230.467 54.9773C228.248 60.9131 224.651 66.2369 219.971 70.51C230.851 75.2157 240.307 82.6911 247.397 92.191C248.028 93.0309 248.488 93.9869 248.749 95.0044C249.011 96.022 249.07 97.0811 248.922 98.1213C248.775 99.1615 248.423 100.162 247.889 101.067C247.354 101.971 246.647 102.762 245.807 103.393H245.806ZM189.756 169.494C190.227 170.44 190.506 171.469 190.576 172.523C190.647 173.577 190.509 174.634 190.169 175.634C189.829 176.634 189.294 177.557 188.596 178.349C187.897 179.142 187.049 179.788 186.099 180.25C185.15 180.713 184.118 180.983 183.064 181.045C182.01 181.107 180.953 180.96 179.956 180.612C178.959 180.263 178.041 179.721 177.254 179.016C176.468 178.311 175.829 177.457 175.374 176.504C170.776 167.058 163.614 159.095 154.707 153.524C145.8 147.954 135.506 145 125 145C114.494 145 104.2 147.954 95.2928 153.524C86.3856 159.095 79.2241 167.058 74.626 176.504C73.6964 178.411 72.0472 179.871 70.0412 180.563C68.0353 181.254 65.8368 181.12 63.9295 180.19C62.0222 179.261 60.5623 177.612 59.8709 175.606C59.1796 173.6 59.3134 171.401 60.243 169.494C67.6451 154.162 80.2633 141.966 95.838 135.09C87.8668 128.993 82.0072 120.551 79.0829 110.951C76.1587 101.351 76.317 91.0755 79.5355 81.57C82.754 72.0645 88.8709 63.8069 97.0261 57.9583C105.181 52.1096 114.964 48.9642 125 48.9642C135.036 48.9642 144.819 52.1096 152.974 57.9583C161.129 63.8069 167.246 72.0645 170.464 81.57C173.683 91.0755 173.841 101.351 170.917 110.951C167.993 120.551 162.133 128.993 154.162 135.09C169.737 141.966 182.355 154.162 189.757 169.494H189.756ZM125 129C131.329 129 137.516 127.123 142.778 123.607C148.041 120.091 152.142 115.093 154.564 109.246C156.986 103.399 157.62 96.9645 156.385 90.7571C155.15 84.5497 152.103 78.8478 147.627 74.3726C143.152 69.8973 137.45 66.8496 131.243 65.6148C125.035 64.3801 118.601 65.0138 112.754 67.4358C106.907 69.8578 101.909 73.9594 98.393 79.2217C94.8768 84.4841 93 90.671 93 97C93.0095 105.484 96.384 113.618 102.383 119.617C108.382 125.616 116.516 128.99 125 129V129ZM65 73C65 70.8782 64.1571 68.8434 62.6568 67.3431C61.1566 65.8428 59.1217 65 57 65C52.4468 64.9987 47.9878 63.7023 44.1438 61.262C40.2997 58.8217 37.2291 55.3383 35.2905 51.2184C33.3519 47.0985 32.6253 42.5121 33.1954 37.9947C33.7656 33.4773 35.609 29.2153 38.5105 25.7063C41.412 22.1973 45.2518 19.586 49.5816 18.1774C53.9115 16.7687 58.5527 16.6209 62.9634 17.751C67.3742 18.8811 71.3724 21.2426 74.4914 24.5598C77.6104 27.877 79.7214 32.013 80.578 36.485C80.9948 38.549 82.2085 40.3655 83.956 41.5404C85.7034 42.7154 87.8436 43.154 89.9123 42.7611C91.9811 42.3682 93.8115 41.1756 95.0065 39.4418C96.2016 37.7081 96.6649 35.5731 96.296 33.5C95.1126 27.2742 92.4669 21.4187 88.5768 16.4158C84.6867 11.413 79.6636 7.40607 73.9214 4.72513C68.1791 2.04418 61.882 0.765971 55.549 0.995799C49.2159 1.22563 43.028 2.95692 37.4952 6.04703C31.9624 9.13715 27.2429 13.4977 23.7257 18.7693C20.2085 24.0409 17.9942 30.0728 17.2652 36.368C16.5361 42.6632 17.3133 49.0415 19.5326 54.9775C21.7519 60.9134 25.3498 66.2371 30.03 70.51C19.1491 75.2158 9.69205 82.6919 2.60199 92.193C1.97099 93.033 1.51162 93.989 1.2501 95.0066C0.988589 96.0241 0.930052 97.0832 1.07784 98.1233C1.3763 100.224 2.49704 102.12 4.19349 103.394C5.88995 104.669 8.02316 105.217 10.1239 104.919C12.2245 104.62 14.1206 103.499 15.395 101.803C20.2177 95.321 26.4948 90.0618 33.721 86.4486C40.9473 82.8354 48.9208 80.9691 57 81C59.1217 81 61.1566 80.1571 62.6568 78.6568C64.1571 77.1565 65 75.1217 65 73Z" fill="#ff3000"/>
+                    </svg>
+                  </a>
+                </div>
+                <div class="objective-detail">
+                    <strong><a href="{% url "profile_browse" %}">{{ facets.user|default:_("No") }} {% blocktrans count counter=facets.user %}User{% plural %}Users{% endblocktrans %}</a></strong>
+                    <p>{% trans "Geonode allows registered users to easily upload geospatial data and various documents in several formats." %}</p>
+                    <a href="{% url "profile_browse" %}" class="link-button">
+                        {% trans "See Users" %}
+                        <svg width="15" height="15" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.00002C0 4.86741 0.0526784 4.74024 0.146447 4.64647C0.240215 4.5527 0.367392 4.50002 0.5 4.50002H12.293L9.146 1.35402C9.05211 1.26013 8.99937 1.1328 8.99937 1.00002C8.99937 0.867245 9.05211 0.739908 9.146 0.646021C9.23989 0.552134 9.36722 0.49939 9.5 0.49939C9.63278 0.49939 9.76011 0.552134 9.854 0.646021L13.854 4.64602C13.9006 4.69247 13.9375 4.74764 13.9627 4.80839C13.9879 4.86913 14.0009 4.93425 14.0009 5.00002C14.0009 5.06579 13.9879 5.13091 13.9627 5.19165C13.9375 5.2524 13.9006 5.30758 13.854 5.35402L9.854 9.35402C9.76011 9.44791 9.63278 9.50065 9.5 9.50065C9.36722 9.50065 9.23989 9.44791 9.146 9.35402C9.05211 9.26013 8.99937 9.1328 8.99937 9.00002C8.99937 8.86725 9.05211 8.73991 9.146 8.64602L12.293 5.50002H0.5C0.367392 5.50002 0.240215 5.44734 0.146447 5.35357C0.0526784 5.25981 0 5.13263 0 5.00002V5.00002Z" fill="#333"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            {% endwith %}
+        </div>
+    </div>
+
+
+	  {% endblock showcase %}
+
+    {% block datasets %}
+    <div class="geo-discover text-center main-vertical-spacing">
+      {% get_visibile_resources request.user %}
+        <h2>{% trans "Discover the available datasets." %}</h2>
+        <div class="discover-all container clearfix">
+          <div ng-app="featured" ng-if="featured.length > 0" ng-cloak class="row">
+              <div class="container text-center">
+                <h2>{% trans "Featured Datasets" %}</h2>
+                <div class="row">
+                    {% verbatim %}
+                    <div ng-repeat="item in featured" class="col-xs-6 col-sm-6 col-md-3">
+                      <a href="{{ item.detail_url }}"><img ng-src="{{ item.thumbnail_url }}" style="width: 100%" /></a>
+                      <h4>{{ item.title | limitTo: 20 }}{{item.title.length > 20 ? '...' : ''}}</h4>
+                    </div>
+                    {% endverbatim %}
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    {% endblock datasets %}
+
+    {% block partners %}
+    <div class="text-center main-vertical-spacing">
+        <h2>{% trans "Our Partners." %}</h2>
+        <div class="container partners-all clearfix">
+            <div class="owl-carousel partner-carousel">
+              {% for partner in custom_theme.partners.all %}
+              <a class="item" href="{{ partner.partner_link|safe }}">
+                {% if partner.logo %}
+                  <img src="partner.logo.url" alt="{{ partner.title|safe }}">
+                {% else %}
+                  {{ partner.title|safe }}
+                {% endif %}
+              </a>
+              {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+    {% endblock partners %}
+
+    {% block cookielawinfo %}
+    {% if custom_theme.cookie_law_info_bar_enabled %}
+        <div id="cookie-law-info-bar">
+            <h5 class="cli_messagebar_head">{{ custom_theme.cookie_law_info_bar_head }}</h5>
+            <span>{{ custom_theme.cookie_law_info_bar_text|safe }}
+                <a data-cli_action="accept" id="cookie_action_close_header" target="_blank"  class="medium cli-plugin-button cli-plugin-main-button cookie_action_close_header cli_action_button" style="display:inline-block; ">{% trans "Accept" %}</a>
+                <a id="cookie_action_close_header_reject" class="medium cli-plugin-button cli-plugin-main-button cookie_action_close_header_reject cli_action_button"  data-cli_action="reject">{% trans "Reject" %}</a>
+                <a id="CONSTANT_OPEN_URL" href='{{ custom_theme.cookie_law_info_leave_url }}' class="medium cli-plugin-button cli-plugin-main-button" style="display:inline-block;">{% trans "Leave" %}</a>
+            </span>
+        </div>
+        <div id="cookie-law-info-again" style="display:none;">
+            <span id="cookie_hdr_showagain">{{ custom_theme.cookie_law_info_showagain_head }}</span>
+        </div>
+        <div class="cli-modal-backdrop cli-fade cli-settings-overlay"></div>
+        <div class="cli-modal-backdrop cli-fade cli-popupbar-overlay"></div>
+        <script type="text/javascript">
+          /* <![CDATA[ */
+          cli_cookiebar_settings='{"animate_speed_hide":"{{custom_theme.cookie_law_info_animate_speed_hide}}","animate_speed_show":"{{custom_theme.cookie_law_info_animate_speed_show}}","background":"{{custom_theme.cookie_law_info_background}}","border":"{{custom_theme.cookie_law_info_border}}","border_on":{{custom_theme.cookie_law_info_border_on}},"button_1_button_colour":"{{custom_theme.cookie_law_info_button_1_button_colour}}","button_1_button_hover":"{{custom_theme.cookie_law_info_button_1_button_hover}}","button_1_link_colour":"{{custom_theme.cookie_law_info_button_1_link_colour}}","button_1_as_button":{{custom_theme.cookie_law_info_button_1_as_button}},"button_1_new_win":{{custom_theme.cookie_law_info_button_1_new_win}},"button_2_button_colour":"{{custom_theme.cookie_law_info_button_2_button_colour}}","button_2_button_hover":"{{custom_theme.cookie_law_info_button_2_button_hover}}","button_2_link_colour":"{{custom_theme.cookie_law_info_button_2_link_colour}}","button_2_as_button":{{custom_theme.cookie_law_info_button_2_as_button}},"button_2_hidebar":{{custom_theme.cookie_law_info_button_2_hidebar}},"button_3_button_colour":"{{custom_theme.cookie_law_info_button_3_button_colour}}","button_3_button_hover":"{{custom_theme.cookie_law_info_button_3_button_hover}}","button_3_link_colour":"{{custom_theme.cookie_law_info_button_3_link_colour}}","button_3_as_button":{{custom_theme.cookie_law_info_button_3_as_button}},"button_3_new_win":{{custom_theme.cookie_law_info_button_3_new_win}},"button_4_button_colour":"{{custom_theme.cookie_law_info_button_4_button_colour}}","button_4_button_hover":"{{custom_theme.cookie_law_info_button_4_button_hover}}","button_4_link_colour":"{{custom_theme.cookie_law_info_button_4_link_colour}}","button_4_as_button":{{custom_theme.cookie_law_info_button_4_as_button}},"font_family":"{{custom_theme.cookie_law_info_font_family}}","header_fix":{{custom_theme.cookie_law_info_header_fix}},"notify_animate_hide":{{custom_theme.cookie_law_info_notify_animate_hide}},"notify_animate_show":{{custom_theme.cookie_law_info_notify_animate_show}},"notify_div_id":"{{custom_theme.cookie_law_info_notify_div_id}}","notify_position_horizontal":"{{custom_theme.cookie_law_info_notify_position_horizontal}}","notify_position_vertical":"{{custom_theme.cookie_law_info_notify_position_vertical}}","scroll_close":{{custom_theme.cookie_law_info_scroll_close}},"scroll_close_reload":{{custom_theme.cookie_law_info_scroll_close_reload}},"accept_close_reload":{{custom_theme.cookie_law_info_accept_close_reload}},"reject_close_reload":{{custom_theme.cookie_law_info_reject_close_reload}},"showagain_tab":{{custom_theme.cookie_law_info_showagain_tab}},"showagain_background":"{{custom_theme.cookie_law_info_showagain_background}}","showagain_border":"{{custom_theme.cookie_law_info_showagain_border}}","showagain_div_id":"{{custom_theme.cookie_law_info_showagain_div_id}}","showagain_x_position":"{{custom_theme.cookie_law_info_showagain_x_position}}","text":"{{custom_theme.cookie_law_info_text}}","show_once_yn":{{custom_theme.cookie_law_info_show_once_yn}},"show_once":"{{custom_theme.cookie_law_info_show_once}}","logging_on":{{custom_theme.cookie_law_info_logging_on}},"as_popup":{{custom_theme.cookie_law_info_as_popup}},"popup_overlay":{{custom_theme.cookie_law_info_popup_overlay}},"bar_heading_text":"{{custom_theme.cookie_law_info_bar_heading_text}}","cookie_bar_as":"{{custom_theme.cookie_law_info_cookie_bar_as}}","popup_showagain_position":"{{custom_theme.cookie_law_info_popup_showagain_position}}","widget_position":"{{custom_theme.cookie_law_info_widget_position}}"}';
+          /* ]]> */
+        </script>
+    {% endif %}
+    {% endblock cookielawinfo %}
+
+{% endblock mainbody %}
+{% endblock middle %}
+
+{% block extra_script %}
+    <script type="text/javascript">
+      $('#main_search').on('submit', (e) => {
+          $('#main_search_abstract_input')[0].value =$('#main_search_input')[0].value;
+          $('#main_search_purpose_input')[0].value = $('#main_search_input')[0].value;
+      });
+    </script>
+{{ block.super }}
+{% if DEBUG_STATIC %}
+<script src="{% static "lib/js/angular.js" %}"></script>
+{% endif %}
+<script type="text/javascript">
+    FEATURED_URL = '{% url 'api_dispatch_list' api_name='api' resource_name='featured' %}'
+    'use strict';
+    (function(){
+      var module = angular.module('featured', []);
+      module.run(function($http, $rootScope){
+		$http.get(FEATURED_URL).then(successCallback, errorCallback);
+
+		function successCallback(data) {
+			//success code
+          $rootScope.featured = data.data.objects;
+		};
+
+		function errorCallback(error) {
+			//error code
+		};
+      });
+    })();
+</script>
+<script>
+	$('[data-toggle="tooltip"]').tooltip({container: 'body'});
+</script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var Cli_Data = {"nn_cookie_ids":[],"cookielist":[]};
+/* ]]> */
+</script>
+<script type="text/javascript" src="{% static "geonode/js/cookie-law-info/cookie-law-info-public.js" %}"></script>
+{% endblock extra_script %}

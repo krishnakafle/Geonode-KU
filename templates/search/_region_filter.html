@@ -1,0 +1,23 @@
+{% load i18n %}
+{% load base_tags %}
+
+<div class="accordion-item">
+
+    <h2 class="accordion-header" id="panelsStayOpen-headingEight">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseEight" aria-expanded="true" aria-controls="panelsStayOpen-collapseEight">
+        <a href="#" class="toggle toggle-nav"><i class="fa fa-chevron-down"></i>{% trans "Regions" %}</a>
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseEight" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingEight">
+      <div class="accordion-body">
+          <form class="autocomplete-input input-group filter-search" id="region-search-autocomplete">
+            {% csrf_token %}
+            <div id="text-search-container">
+              <input autocomplete="off"  ng-model="text_query"  type="search" name="region_search_input" id="region_search_input" placeholder="{% trans 'Search by region' %}" >
+            </div>
+              <button  type="submit" id="region_search_btn">Search</button>
+          </form>
+        </div>
+      </div>
+
+</div>

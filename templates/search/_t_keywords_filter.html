@@ -1,0 +1,33 @@
+{% load i18n %}
+{% load thesaurus %}
+
+<div id="tkeywords">
+  {% for tname in THESAURI_FILTERS %}
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-heading_{{ tname }}">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse_{{ tname }}" aria-expanded="false" aria-controls="panelsStayOpen-collapse_{{ tname }}>
+        {{ tname|get_name_translation }}
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapse_{{ tname }}" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading_{{ tname }}">
+      <div class="accordion-body">
+        <ul class="filter-list" id="tkeywords_{{ tname }}">
+            <li ng-repeat="tk in tkeywords" ng-if="tk.count > 0 && tk.thesaurus_identifier == '{{ tname }}'">
+          {% verbatim %}
+              <a data-value="{{ tk.id }}"
+                 data-filter="tkeywords__id__in"
+                 ng-click="multiple_choice_listener($event)"
+                 class="{{tk.active}}">{{ tk.label | limitTo: 25 }}{{ tk.label.length > 25 ? '...' : ''}}
+                  <span class="badge pull-right">{{ tk.count }}</span>
+              </a>
+            </li>
+          {% endverbatim %}
+        </ul>
+
+      </div>
+    </div>
+
+  </div>
+  {% endfor %}
+
+</div>

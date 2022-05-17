@@ -1,0 +1,18 @@
+{% load i18n %}
+<div class="accordion-item">
+  <h2 class="accordion-header" id="panelsStayOpen-headingNine">
+    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseNine" aria-expanded="true" aria-controls="panelsStayOpen-collapseNine">
+      {% trans "Extent" %}
+    </button>
+  </h2>
+  <div id="panelsStayOpen-collapseNine" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingNine">
+    <div class="accordion-body">
+        <fieldset class="nav closed">
+          <div class="control-group leaflet_map">
+            <openlayers id="filter-map" class="filter-map-container" ol-center="center" ol-defaults="defaults" ol-layers="layers"></openlayers>
+          </div>
+        </fieldset>
+    </div>
+  </div>
+
+</div>

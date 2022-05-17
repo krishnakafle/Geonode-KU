@@ -1,0 +1,22 @@
+{% load i18n %}
+{% load base_tags %}
+<div class="accordion-item">
+
+    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+        <a href="#" class="toggle toggle-nav"><i class="fa fa-chevron-down"></i>{% trans "Text" %}</a>
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
+      <div class="accordion-body">
+          <form class="autocomplete-input input-group filter-search" id="text-search-autocomplete">
+            {% csrf_token %}
+            <div id="text-search-container">
+              <input autocomplete="off"  ng-model="text_query"  type="search" name="text_search_input" id="text_search_input" placeholder="{% trans 'Search' %}" >
+            </div>
+              <button  type="submit" id="text_search_btn">Search</button>
+          </form>
+        </div>
+      </div>
+
+</div>
