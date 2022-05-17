@@ -7,6 +7,11 @@
 
 {% block title %}{{ map.title }} — {{ block.super }}{% endblock %}
 
+{% block header %}
+  {% include "include_components/navbar.html" %}
+{% endblock header %}
+
+
 {% block head %}
     {% include "ol/maps/map_ol2.html" %}
 {{ block.super }}
