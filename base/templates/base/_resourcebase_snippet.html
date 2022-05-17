@@ -123,12 +123,11 @@
                     </span>
                   {% endif %}
                 {% verbatim %}
-                <span><a ng-if="item.detail_url.indexOf('/maps/') > -1" href="{{ item.site_url }}maps/{{item.id}}/view">
-                  
-                  <i class="fa fa-map-marker"></i>{% trans "View Map" %}</a>
-                  
-                </span>
+                <span><a ng-if="item.detail_url.indexOf('/maps/') > -1" href="{{ item.site_url }}maps/{{item.id}}/view">                 
                 {% endverbatim %}
+                  <i class="fa fa-map-marker"></i>{% trans "View Map" %}</a>
+                {% endverbatim %}
+                </span>
               </div>
 
               {% if facet_type == 'layers' %}
