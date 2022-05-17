@@ -1,0 +1,17 @@
+{% extends "geonode_base.html" %}
+{% load i18n %}
+
+{% block title %} {{ block.super }} {% endblock %}
+
+{% block body_class %}people{% endblock %}
+
+
+{% block header %}
+  {% include "include_components/navbar.html" %}
+{% endblock header %}
+
+{% block body_outer %}
+{% block body %}{% endblock body %}
+{% block sidebar %}{% endblock sidebar %}
+
+{% endblock body_outer %}
