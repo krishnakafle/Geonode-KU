@@ -639,12 +639,7 @@ iframe {
   padding-right: 300px;
   position: relative;
 }
-.filter-right {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 250px;
-}	.tabcontent {
+.tabcontent {
   display: none;
 }
 .tabcontent div{
@@ -939,5 +934,24 @@ footer * {
   max-width: 700px;
 }
   .log-reg {
+  padding: 15px;
+}
+
+body * {
+  font-size: medium;
+}
+.dropdown-menu {
+  top: calc(100% - 10px);
+}
+.layer-actions {
+  margin: 15px 0;
+}
+.tab-content dd, .tab-content dt {
+  padding: 2px 0 !important;
+}
+.social li, .overall_rating img {
+  padding: 3px 0;
+}
+.filter-right .list-group-item {
   padding: 15px;
 }
