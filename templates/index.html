@@ -185,6 +185,16 @@
         <h2>{% trans "Our Partners." %}</h2>
         <div class="container partners-all clearfix">
             <div class="owl-carousel partner-carousel">
+              <a class="item" href="#">
+                <img src="{% static 'custom/images/worldbank.png' %}" alt="worldbank">
+              </a>
+              <a class="item" href="#">
+                  <img src="{% static 'custom/images/ukaid.png' %}" alt="worldbank">
+              </a>
+              <a class="item" href="#">
+                  <img src="{% static 'custom/images/ku.png' %}" alt="worldbank">
+              </a>
+
               {% for partner in custom_theme.partners.all %}
               <a class="item" href="{{ partner.partner_link|safe }}">
                 {% if partner.logo %}
