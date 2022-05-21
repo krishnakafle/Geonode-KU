@@ -331,13 +331,14 @@ body.sb-sidenav-toggled #sidebar-wrapper {
 }
 .single-pages {
   position: relative;
-  padding-left: 300px;
+  /* padding-left: 300px; */
 }
 .filter-left {
-  position: absolute;
+  /* position: absolute; */
   width: 250px;
-  left: 0;
-  top: 0;
+  float:left;
+  /* left: 0;
+  top: 0; */
 }
 .filter-title {
   font-size: 14px;
@@ -689,7 +690,7 @@ table thead th {
   background-color: #fafafa;
   padding: 15px;
   box-shadow: 0 0 5px #ddd;
-  min-width: 250px;
+  /* min-width: 250px; */
   position: relative;
 }
 .team-list img {
@@ -938,7 +939,7 @@ footer * {
 }
 
 body * {
-  font-size: medium;
+  font-size: initial;
 }
 .dropdown-menu {
   top: calc(100% - 10px);
@@ -954,4 +955,8 @@ body * {
 }
 .filter-right .list-group-item {
   padding: 15px;
+}
+.data-show { 
+  float: right; 
+  width: calc(100% - 290px);
 }
