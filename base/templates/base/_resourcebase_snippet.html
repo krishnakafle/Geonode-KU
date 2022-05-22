@@ -7,9 +7,9 @@
       <div><h3>{% trans "No content created yet." %}</h3></div>
       {% verbatim %}
     </div>
-    <article ng-repeat="item in results" resource_id="{{ item.id }}" ng-cloak class="ng-cloak">
+    <article>
 
-      <div class="data-list">
+      <div class="data-list" ng-repeat="item in results" resource_id="{{ item.id }}" ng-cloak class="ng-cloak">
         <div class="data-list-img">
             <a href="{{ item.detail_url }}">
                 <img src="{{ item.thumbnail_url }}" />

@@ -938,7 +938,7 @@ footer * {
   padding: 15px;
 }
 
-body * {
+body  {
   font-size: initial;
 }
 .dropdown-menu {
@@ -959,4 +959,36 @@ body * {
 .data-show { 
   float: right; 
   width: calc(100% - 290px);
+}
+.drop-zone {
+  background-color: #767676;
+  padding: 25px 15px;
+  margin-bottom: 5px;
+}
+.drop-zone h3 i {
+  font-size: 38px;
+}
+.file-uploader input {
+  border: 1px solid #cbcbcb;
+  font-size: 14px;
+}
+.new-widg h4 {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.upl-buttons {
+  margin-top: 20px;
+}
+.upl-buttons .btn-default {
+  border: 1px solid #cbcbcb;
+  font-size: 14px;
+}
+.upl-buttons .btn-primary {
+  font-size: 14px;
+  background: #3d579e;
+  border-color: #3d579e;
+}
+.list-det h4 {
+  display: flex;
 }
