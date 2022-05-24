@@ -13,10 +13,6 @@
 
 {% block title %}{{ resource.title|default:resource.alternate }} — {{ block.super }}{% endblock %}
 
-{% block header %}
-  {% include "include_components/nav_home.html" %}
-{% endblock header %}
-
 
 {% block head %}
 
@@ -266,11 +262,11 @@
   </div>
   <div class="col-md-4">
 
-    <ul class="list-group filter-right">
+    <ul class="filter-right">
       {% if resource.storeType != "remoteStore" %}
         {% if link_geotiff_io %}
         <!-- <li class="list-group-item"> -->
-          <a href="{{link_geotiff_io}}" class="main-button" target="_blank">{% trans "Analyze with" %} GeoTIFF.io</a>
+          <a href="{{link_geotiff_io}}" class="main-button" target="_blank"> <button class="main-button">{% trans "Analyze with" %} GeoTIFF.io </button></a>
         <!-- </li> -->
         {% endif %}
         <!-- <li class="list-group-item"> -->
@@ -539,11 +535,11 @@
     {% endif %}
 
     <!-- <li class="list-group-item"> -->
-      <a href="{% url "new_map" %}?layer={{resource.service_typename}}&view=True" class="btn btn-default btn-md btn-block">{% trans "View Layer" %}</a>
+      <a href="{% url "new_map" %}?layer={{resource.service_typename}}&view=True"> <button class="second-button" >{% trans "View Layer" %}</button></a>
     <!-- </li> -->
 
     <!-- <li class="list-group-item"> -->
-      <button class="btn btn-default btn-md btn-block" data-bs-toggle="modal" data-bs-target="#download-metadata">{% trans "Download Metadata" %}</button>
+      <button class="second-button" data-bs-toggle="modal" data-bs-target="#download-metadata">{% trans "Download Metadata" %}</button>
     <!-- </li> -->
 
     <div class="modal fade" id="download-metadata" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

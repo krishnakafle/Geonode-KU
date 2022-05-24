@@ -6,6 +6,10 @@
 
 {% block title %} {% trans "Create Layer"  %} - {{ block.super }}  {% endblock %}
 
+{% block header %}
+  {% include "include_components/navbar.html" %}
+{% endblock header %}
+
 {% block body_class %}layer create{% endblock %}
 
 
