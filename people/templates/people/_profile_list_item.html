@@ -1,9 +1,9 @@
 {% load i18n %}
 
 {% verbatim %}
-  <article >
-    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 team" style="height:180px;width:25%;" ng-repeat="profile in results" ng-cloak class="ng-cloak">
-      <div class="col-xs-12 team-list">
+  <article class="clearfix team">
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="profile in results" ng-cloak class="ng-cloak">
+      <div class="col-xs-12">
           <a href="{{ profile.profile_detail_url }}" >
             <img ng-src="{{ profile.avatar_100 }}"/>
             <a href="{{ profile.profile_detail_url }}">{{ profile.first_name != '' ? profile.first_name : profile.username }} {{ profile.last_name != '' ? profile.last_name : '' }}
