@@ -3,6 +3,10 @@
 
 {% block title %} {% blocktrans %}Announcements : {{ announcement }}{% endblocktrans %} {{ block.super }} {% endblock %}
 
+{% block header %}
+  {% include "include_components/navbar.html" %}
+{% endblock header %}
+
 {% block body %}
 <div class="page-header">
   <h2>{{ announcement.title }} ({{ announcement.level_label }})</h2>

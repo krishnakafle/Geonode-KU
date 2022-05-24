@@ -5,6 +5,10 @@
 
 {% block body_class %}announcements{% endblock %}
 
+{% block header %}
+  {% include "include_components/navbar.html" %}
+{% endblock header %}
+
 {% block body %}
 <div class="page-header">
   <h2>{% if announcement %}{% trans "Edit Announcement" %}{% else %}{% trans "Create Announcement" %}{% endif %}</h2>

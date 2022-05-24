@@ -5,6 +5,10 @@
 
 {% block body_class %}announcements{% endblock %}
 
+{% block header %}
+  {% include "include_components/navbar.html" %}
+{% endblock header %}
+
 {% block body %}
     <h1>{% trans "Delete Announcement?" %}</h1>
     {% url "announcements_delete" pk=announcement.pk as post_url %}

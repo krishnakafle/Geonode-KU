@@ -6,6 +6,11 @@
 
 {% block body_class %}announcements{% endblock %}
 
+{% block header %}
+  {% include "include_components/navbar.html" %}
+{% endblock header %}
+
+
 {% block body_outer %}
 <div class="page-header">
   {% if not READ_ONLY_MODE %}
