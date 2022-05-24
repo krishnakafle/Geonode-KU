@@ -13,6 +13,11 @@
 
 {% block title %}{{ resource.title|default:resource.alternate }} — {{ block.super }}{% endblock %}
 
+{% block header %}
+  {% include "include_components/nav_home.html" %}
+{% endblock header %}
+
+
 {% block head %}
 
   <META HTTP-EQUIV="Access-Control-Allow-Origin" CONTENT="{{ SITEURL }}">
@@ -264,19 +269,19 @@
     <ul class="list-group filter-right">
       {% if resource.storeType != "remoteStore" %}
         {% if link_geotiff_io %}
-        <li class="list-group-item">
-          <a href="{{link_geotiff_io}}" class="btn btn-primary btn-block" target="_blank">{% trans "Analyze with" %} GeoTIFF.io</a>
-        </li>
+        <!-- <li class="list-group-item"> -->
+          <a href="{{link_geotiff_io}}" class="main-button" target="_blank">{% trans "Analyze with" %} GeoTIFF.io</a>
+        <!-- </li> -->
         {% endif %}
-        <li class="list-group-item">
+        <!-- <li class="list-group-item"> -->
         {% if links_download %}
-           <button class="btn btn-primary btn-md btn-block" data-bs-toggle="modal" data-bs-target="#download-layer">{% trans "Download Layer" %}</button>
+           <button class="main-button" data-bs-toggle="modal" data-bs-target="#download-layer">{% trans "Download Layer" %}</button>
         {% else %}
           {% if request.user.is_authenticated %}
-          <button class="btn btn-primary btn-md btn-block" id="request-download">{% trans "Request Download" %}</button>
+          <button class="main-button" id="request-download">{% trans "Request Download" %}</button>
           {% endif %}
         {% endif %}
-        </li>
+        <!-- </li> -->
       {% endif %}
     <div class="modal fade" id="download-layer" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -439,24 +444,24 @@
       {% get_obj_perms request.user for resource.layer as "layer_perms" %}
     {% endif %}
 
-    <li class="list-group-item">
+    <!-- <li class="list-group-item"> -->
       <a href="{% url "layer_metadata_detail" resource.alternate %}">
-        <button class="btn btn-primary btn-md btn-block">{% trans "Metadata Detail" %}</button>
+        <button class="main-button">{% trans "Metadata Detail" %}</button>
       </a>
-    </li>
+    <!-- </li> -->
     {% display_edit_request_button resource request.user perms_list as display_request_button %}
     {% if display_request_button %}
-        <li class="list-group-item">
+        <!-- <li class="list-group-item"> -->
             <a href="{% url "owner_rights_request" resource.id %}">
-                <button class="btn btn-primary btn-md btn-block">{% trans "Request change" %}</button>
+                <button class="second-button">{% trans "Request change" %}</button>
             </a>
-        </li>
+        <!-- </li> -->
     {% endif %}
     {% if not READ_ONLY_MODE %}
       {% if "change_resourcebase_metadata" in perms_list or "change_resourcebase" in perms_list or "delete_resourcebase" in perms_list or "change_layer_style" in layer_perms %}
-      <li class="list-group-item">
-        <button class="btn btn-primary btn-md btn-block" data-bs-toggle="modal" data-bs-target="#edit-layer">{% trans "Editing Tools" %}</button>
-      </li>
+      <!-- <li class="list-group-item"> -->
+        <button class="second-button" data-bs-toggle="modal" data-bs-target="#edit-layer">{% trans "Editing Tools" %}</button>
+      <!-- </li> -->
       <div class="modal fade" id="edit-layer" tabindex="-1" role="dialog" aria-labelledby="edit-layer" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -533,13 +538,13 @@
       {% endif %}
     {% endif %}
 
-    <li class="list-group-item">
+    <!-- <li class="list-group-item"> -->
       <a href="{% url "new_map" %}?layer={{resource.service_typename}}&view=True" class="btn btn-default btn-md btn-block">{% trans "View Layer" %}</a>
-    </li>
+    <!-- </li> -->
 
-    <li class="list-group-item">
+    <!-- <li class="list-group-item"> -->
       <button class="btn btn-default btn-md btn-block" data-bs-toggle="modal" data-bs-target="#download-metadata">{% trans "Download Metadata" %}</button>
-    </li>
+    <!-- </li> -->
 
     <div class="modal fade" id="download-metadata" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
