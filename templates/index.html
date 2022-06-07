@@ -183,16 +183,17 @@
         <h2>{% trans "Our Partners." %}</h2>
         <div class="container partners-all clearfix">
             <div class="owl-carousel partner-carousel">
-              <a class="item" href="#">
+              <a class="item" href="https://www.worldbank.org/en/home">
                 <img src="{% static 'custom/images/worldbank.png' %}" alt="worldbank">
               </a>
-              <a class="item" href="#">
+              <a class="item" href="https://www.gov.uk/world/organisations/dfid-nepal">
                   <img src="{% static 'custom/images/ukaid.png' %}" alt="worldbank">
               </a>
-              <a class="item" href="#">
+              <a class="item" href="https://geom.ku.edu.np/">
                   <img src="{% static 'custom/images/ku.png' %}" alt="worldbank">
               </a>
 
+              {% comment %}
               {% for partner in custom_theme.partners.all %}
               <a class="item" href="{{ partner.partner_link|safe }}">
                 {% if partner.logo %}
@@ -202,6 +203,7 @@
                 {% endif %}
               </a>
               {% endfor %}
+              {% endcomment %}
             </div>
         </div>
     </div>

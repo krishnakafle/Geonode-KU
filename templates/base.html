@@ -147,6 +147,15 @@
       </style>
     <![endif]-->
     <link rel="search" type="application/opensearchdescription+xml" href="{% if SITEURL|default:""|slice:"-1:" == "/" %}{{SITEURL}}{% else %}{{SITEURL}}/{% endif %}catalogue/opensearch" title="{% trans "GeoNode Search" %}"/>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NZNLQKJPBY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-NZNLQKJPBY');
+    </script>
 
     <script>
         var siteUrl = '{{ SITEURL }}'.replace(/\/?$/, '/');
@@ -223,10 +232,11 @@
                 {% block contactus %}
                 {% if custom_theme.contactus %}
                   <div class="footer-list col-md-3">
-                      <h3>GeoNepal</h3>
-                      <p>Lorem ipsum dolor sit amet consecutor. Lorem ipsum dolor sit amet consecutor. Lorem ipsum dolor sit amet consecutor.</p>
+                    <h3>{% trans "Contact Us" %} </h3>
+                      <!-- <h3>GeoNepal</h3>
+                      <p>Lorem ipsum dolor sit amet consecutor. Lorem ipsum dolor sit amet consecutor. Lorem ipsum dolor sit amet consecutor.</p> -->
                       <ul>
-                          <li><h2>{% trans "Contact Us" %} </h2> </li>
+                          <!-- <li><h2>{% trans "Contact Us" %} </h2> </li> -->
                           {% if custom_theme.contact_name %}<li>{{ custom_theme.contact_name }}</li>{% endif %}
                           {% if custom_theme.contact_position %}<li>{{ custom_theme.contact_position }}</li>{% endif %}
                           {% if custom_theme.contact_administrative_area %}<li>{{ custom_theme.contact_administrative_area }}</li>{% endif %}
