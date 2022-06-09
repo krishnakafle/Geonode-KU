@@ -63,7 +63,7 @@
     <style type="text/css">
         {% if custom_theme.logo %}
         .navbar-brand {
-          background-image: url({{ custom_theme.logo.url }});
+          /* background-image: url({{ custom_theme.logo.url }}); */
           background-repeat: no-repeat;
           background-position: center;
           background-size: contain;
@@ -235,7 +235,7 @@
                     <h3>{% trans "Contact Us" %} </h3>
                       <!-- <h3>GeoNepal</h3>
                       <p>Lorem ipsum dolor sit amet consecutor. Lorem ipsum dolor sit amet consecutor. Lorem ipsum dolor sit amet consecutor.</p> -->
-                      <ul>
+                      <ul style="list-style-type:none;">
                           <!-- <li><h2>{% trans "Contact Us" %} </h2> </li> -->
                           {% if custom_theme.contact_name %}<li>{{ custom_theme.contact_name }}</li>{% endif %}
                           {% if custom_theme.contact_position %}<li>{{ custom_theme.contact_position }}</li>{% endif %}
