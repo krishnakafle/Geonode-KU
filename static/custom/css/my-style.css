@@ -1194,3 +1194,20 @@ body {
 .dropdown-menu>li>a {
     font-size: 14px !important;
 }
+
+.result-wrapper {
+    border-top: 1px solid #eee;
+}
+
+.ac-result {
+    padding: 5px 10px;
+    display: block;
+    font-size: 14px;
+    color: #000;
+}
+
+#text_search_btn {
+    position: absolute;
+    top: 5px;
+    right: 0;
+}
