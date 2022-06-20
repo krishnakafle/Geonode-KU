@@ -1211,3 +1211,17 @@ body {
     top: 5px;
     right: 0;
 }
+
+.pnf {
+    text-align: center;
+    padding: 70px 0;
+}
+
+.pnf h3 {
+    text-shadow: red -2px 0, aqua 2px 0;
+    font-size: 34px;
+}
+
+.header-search {
+    margin-bottom: 0;
+}
