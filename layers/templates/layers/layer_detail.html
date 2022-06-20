@@ -26,7 +26,7 @@
   {% endif %}
   <script type="text/javascript">
     // this is used by thumbnail.js to POST to the thumbnail update view
-    window.thumbnailUpdateUrl = '{% url 'base-resources-set-thumb-from-bbox' resource.id %}';
+    window.thumbnailUpdateUrl = '{% url 'layer_thumbnail' resource.alternate %}';
   </script>
   <script type="text/javascript" src="{% static "geonode/js/utils/thumbnail.js" %}"></script>
   {% get_layer_detail %}
@@ -554,8 +554,8 @@
                 {% trans "Full metadata" %}
                 </h5>
                 <ul>
-                    <li><a target="_blank" href="{% url 'csw_render_extra_format_txt'  resource.uuid resource.title|slugify %}"> {% trans "Text format" %} </a></li>
-                    <li><a target="_blank" href="{% url 'csw_render_extra_format_html' resource.uuid resource.title|slugify %}"> {% trans "HTML format" %} </a></li>
+                  <li><a target="_blank" href="../catalogue/csw_to_extra_format/{{resource.uuid}}/{{resource.title | slugify }}.txt"> {% trans "Text format" %} </a></li>
+                  <li><a target="_blank" href="../catalogue/csw_to_extra_format/{{resource.uuid}}/{{resource.title | slugify }}.html"> {% trans "HTML format" %} </a></li>
                 </ul>
             </div>
             <div style="margin-bottom:20px">
@@ -592,8 +592,8 @@
           {% if resource.default_style == style or resource.default_style.name == style.name or style.sld_title and resource.default_style.sld_title == style.sld_title %}
               {% for legend in resource.get_legend %}
                   {% get_sld_name_from_url style.sld_url as sld_name %}
-                  {% get_style_name_from_legend_url legend.url as legend_style_name %}
-                  {% if legend.link_type == 'image' and sld_name == legend_style_name %}
+                  {% with "STYLE="|add:sld_name as style_name %}
+                  {% if legend.link_type == 'image' and style_name in legend.url %}
                     <p id="legend_sld_title" style="font-size:10px">{{ style.sld_title|default:style.name }}</p>
                     {% if request.user.is_authenticated and access_token %}
                         <p><img id="legend_icon" src="{{ legend.url }}&access_token={{access_token}}"></p>
@@ -603,10 +603,11 @@
                   {% else %}
                   <div id='legend_placeholder'></div>
                   {% endif %}
+              {% endwith %}
               {% endfor %}
-          {% endif %}
-        {% endif %}
-      {% endfor %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
       {% else %}
         {% for legend in resource.get_legend %}
             <p><img id="legend_icon" src="{{ legend.url }}"></p>
@@ -691,7 +692,7 @@
     {% if resource.storeType == "remoteStore" %}
     <li class="list-group-item">
       <h4>{% trans "External service layer" %}</h4>
-      <div>{% trans "Source" %}: <a href="{% url 'service_detail' resource.remote_service.id %}">{{ resource.remote_service.title }}</a>
+      <div>{% trans "Source" %}: <a href="/services/{{resource.remote_service.id}}">{{ resource.remote_service.title }}</a>
       </div>
       <div>{% trans "Type" %}: {{ resource.remote_service.type }}</div>
     </li>
@@ -732,7 +733,22 @@
     {% include "base/_resourcebase_contact_snippet.html" %}
   </ul>
 
-  {% include "_update_permissions_modal.html" %}
+  <div class="modal fade" style="width: 100%; height: 100%;" id="_perms_processing" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1>{% trans "Processing..." %}</h1>
+            </div>
+            <div class="modal-body">
+                <div class="progress">
+                  <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                    {% trans "Updating Permissions..." %}
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
   {% if GEONODE_SECURITY_ENABLED %}
     {% include "_permissions_form.html" %}
